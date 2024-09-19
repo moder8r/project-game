@@ -1,53 +1,49 @@
-let cpu = Math.floor(Math.random() * 3)
-let player = parseInt(prompt('Enter 1 for Rock, 2 for Paper and 3 for Scissors'))
+const playerSelection = parseInt(prompt('Lets Play Rock, Paper and Scissors\n 1. for Rock, 2. for Paper 3. for Scissors'))
+const computerSelection = Math.floor(Math.random() * 3) + 1
 
-function cpuChoice(cpu) {
-    if (cpu === 0) {
-        return 'CPU chose Rock'
-    } else if (cpu === 1) {
-        return 'CPU chose Paper'
+function getComputerChoice() {
+    if (computerSelection == 1) {
+        return 'Rock'
+    } else if (computerSelection == 2) {
+        return 'Paper'
     } else {
-        return 'CPU chose Scissors'
+        return 'Scissors'
     }
 }
 
-function playerChoice(player) {
-    if (player === 1) {
-        return 'You chose Rock'
-    } else if (player === 2) {
-        return 'You chose Paper'
-    } else if (player === 3) {
-        return 'You chose Scissors'
+console.log(`Computer chose ${getComputerChoice()}`);
+
+function getPlayerChoice() {
+    if (playerSelection == 1) {
+        return 'Rock'
+    } else if (playerSelection == 2) {
+        return 'Paper'
+    } else if (playerSelection == 3) {
+        return 'Scissors'
     } else {
         return 'Incorrect Choice'
     }
 }
 
-console.log(playerChoice(player))
-console.log(cpuChoice(cpu))
+console.log(`You chose ${getPlayerChoice()}`)
 
-function playRound(player, cpu) {
-    if (cpu === 0 && player === 1) {
-        return 'Its a Tie!'
-    } else if (cpu === 0 && player === 2) {
-        return 'You Win! Paper beats Rock'
-    } else if (cpu === 0 && player === 3) {
-        return 'You Loose! Rock beats Scissors'
-    } else if (cpu === 1 && player === 1) {
-        return 'You Loose! Paper beats Rock'
-    } else if (cpu === 1 && player === 2) {
-        return 'Its a Tie'
-    } else if (cpu === 1 && player === 3) {
-        return 'You Win! Scissors beat Paper'
-    } else if (cpu === 2 && player === 1) {
-        return 'You Win! Rock beats Scissors'
-    } else if (cpu === 2 && player === 2) {
-        return 'You Loose! Scissors beat Paper'
-    } else if (cpu === 2 && player === 3) {
-        return 'Its a Tie'
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == 1 && computerSelection == 3 || playerSelection == 2 && computerSelection == 1 || playerSelection == 3 && computerSelection == 2) {
+        return 'You Win!'
+    } else if (playerSelection == 1 && computerSelection == 2 || playerSelection == 2 && computerSelection == 3 || playerSelection == 3 && computerSelection == 1) {
+        return 'You Loose!'
     } else {
-        return 'Incorrect Entry'
+        return 'Its a Tie'
     }
 }
 
-console.log(playRound(player, cpu))
+if (playRound(playerSelection, computerSelection) == 'You Win!') {
+    console.log(`${playRound(playerSelection, computerSelection)} ${getPlayerChoice()} beats ${getComputerChoice()}`)
+} else if (playRound(playerSelection, computerSelection) == 'You Loose!') {
+    console.log(`${playRound(playerSelection, computerSelection)} ${getComputerChoice()} beats ${getPlayerChoice()}`)
+} else {
+    console.log(playRound(playerSelection, computerSelection))
+}
+
+let playerScore = 0
+let computerScore = 0
