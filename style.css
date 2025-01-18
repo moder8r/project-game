@@ -1,0 +1,12 @@
+h1 {
+    background-color: red;
+    color: white;
+}
+
+.code {
+    background-color: black;
+    color: white;
+    width: 350px;
+    display: inline-block;
+    text-align: center;
+}

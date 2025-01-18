@@ -1,49 +1,53 @@
-const playerSelection = parseInt(prompt('Lets Play Rock, Paper and Scissors\n 1. for Rock, 2. for Paper 3. for Scissors'))
-const computerSelection = Math.floor(Math.random() * 3) + 1
-
+alert(`Let's play Rock Paper Scissors.`)
 function getComputerChoice() {
-    if (computerSelection == 1) {
-        return 'Rock'
-    } else if (computerSelection == 2) {
-        return 'Paper'
-    } else {
-        return 'Scissors'
+    const randomNumber = Math.floor(Math.random() * 3) + 1;
+    if (randomNumber == 1) {
+        return 'rock';
+    } else if (randomNumber == 2) {
+        return 'paper';
+    } else if (randomNumber == 3) {
+        return 'scissors';
     }
 }
-
-console.log(`Computer chose ${getComputerChoice()}`);
 
 function getPlayerChoice() {
-    if (playerSelection == 1) {
-        return 'Rock'
-    } else if (playerSelection == 2) {
-        return 'Paper'
-    } else if (playerSelection == 3) {
-        return 'Scissors'
-    } else {
-        return 'Incorrect Choice'
-    }
+    let choice = prompt('Enter Your Choice:').toLowerCase();
+    return choice;
 }
-
-console.log(`You chose ${getPlayerChoice()}`)
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection == 1 && computerSelection == 3 || playerSelection == 2 && computerSelection == 1 || playerSelection == 3 && computerSelection == 2) {
+    if (playerSelection === computerSelection) {
+        alert(`You chose ${playerSelection} against ${computerSelection}\nIt's a Tie!`);
+        return 'Tie'
+    } else if (
+        (playerSelection === 'rock' && computerSelection === 'scissors')
+        || (playerSelection === 'paper' && computerSelection === 'rock')
+        || (playerSelection === 'scissors' && computerSelection === 'paper')
+    ) {
+        alert(`You chose ${playerSelection} against ${computerSelection}\nYou Win!`);
         return 'You Win!'
-    } else if (playerSelection == 1 && computerSelection == 2 || playerSelection == 2 && computerSelection == 3 || playerSelection == 3 && computerSelection == 1) {
-        return 'You Loose!'
     } else {
-        return 'Its a Tie'
+        alert(`You chose ${playerSelection} against ${computerSelection}\nYou Loose!`);
+        return 'You Loose!'
     }
 }
 
-if (playRound(playerSelection, computerSelection) == 'You Win!') {
-    console.log(`${playRound(playerSelection, computerSelection)} ${getPlayerChoice()} beats ${getComputerChoice()}`)
-} else if (playRound(playerSelection, computerSelection) == 'You Loose!') {
-    console.log(`${playRound(playerSelection, computerSelection)} ${getComputerChoice()} beats ${getPlayerChoice()}`)
-} else {
-    console.log(playRound(playerSelection, computerSelection))
+
+function playGame() {
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        const win = playRound(playerSelection, computerSelection);
+        console.log(win);
+        if (win === 'You Win!') {
+            playerScore++
+        } else if (win === 'You Loose!') {
+            computerScore++
+        }
+    }
+    alert(`Your Score = ${playerScore} | Computer Score = ${computerScore}`)
 }
 
-let playerScore = 0
-let computerScore = 0
+playGame()
