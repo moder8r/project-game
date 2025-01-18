@@ -1,4 +1,8 @@
 alert(`Let's play Rock Paper Scissors.`)
+
+//TASK 1: Creating a function that randomly chooses between three choices.
+//Arrays are not being used as they were not yet introduced in The Odin Project curriculum.
+
 function getComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3) + 1;
     if (randomNumber == 1) {
@@ -10,10 +14,14 @@ function getComputerChoice() {
     }
 }
 
+//TASK 2: Creating a function that takes in player choice.
+
 function getPlayerChoice() {
-    let choice = prompt('Enter Your Choice:').toLowerCase();
+    let choice = prompt('Your Move\n\nEnter rock, paper or scissors').toLowerCase();
     return choice;
 }
+
+//TASK 3: Creating the game function.
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
@@ -32,6 +40,8 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+//TASK 4: Looping that game function 5 times. for loop was used for this purpose.
+//for loops were not yet covered in the curriculum as well but could not think of any other way to achieve this. 
 
 function playGame() {
     let playerScore = 0;
@@ -47,7 +57,13 @@ function playGame() {
             computerScore++
         }
     }
-    alert(`Your Score = ${playerScore} | Computer Score = ${computerScore}`)
+    if (playerScore > computerScore) {
+        alert(`You Win!\n\nYour Score = ${playerScore}\nComputer Score = ${computerScore}`)
+    } else if (playerScore < computerScore) {
+        alert(`You Loose!\n\nYour Score = ${playerScore}\nComputer Score = ${computerScore}`)
+    }
 }
 
-playGame()
+//Calling the function that puts it all in motion.
+
+playGame();
